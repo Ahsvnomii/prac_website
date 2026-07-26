@@ -1,0 +1,39 @@
+CREATE TABLE IF NOT EXISTS products (
+  id VARCHAR(64) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  category VARCHAR(50) NOT NULL,
+  price DECIMAL(10,2) NOT NULL DEFAULT 0,
+  cost_price DECIMAL(10,2) NOT NULL DEFAULT 0,
+  badge VARCHAR(100) DEFAULT '',
+  emoji VARCHAR(20) DEFAULT '🌿',
+  short_desc TEXT,
+  full_desc TEXT,
+  features TEXT,
+  images LONGTEXT,
+  payment_policy VARCHAR(20) DEFAULT 'cod',
+  sort_order INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id VARCHAR(64) PRIMARY KEY,
+  customer_name VARCHAR(255) NOT NULL,
+  phone VARCHAR(100) NOT NULL,
+  address TEXT NOT NULL,
+  district VARCHAR(100) DEFAULT '',
+  note TEXT,
+  payment VARCHAR(50) DEFAULT 'cod',
+  pay_label VARCHAR(100) DEFAULT '',
+  bkash_trx VARCHAR(100) DEFAULT '',
+  total DECIMAL(10,2) NOT NULL DEFAULT 0,
+  items LONGTEXT,
+  status VARCHAR(30) DEFAULT 'Pending',
+  order_month VARCHAR(60) DEFAULT '',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS content_settings (
+  setting_key VARCHAR(80) PRIMARY KEY,
+  setting_value LONGTEXT
+);
